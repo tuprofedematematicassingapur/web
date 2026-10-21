@@ -44,7 +44,8 @@ h3{font-size:1.2rem;font-weight:600}
   .nav a.nav-res{display:block;border:0;margin-top:10px;background:var(--coral);color:#fff;text-align:center;border-radius:12px;font-weight:700}
   .top .top-cta{display:none}
 }
-@media (max-width:380px){.brand small{display:none}.top-tem{padding:5px 9px}}
+@media (max-width:420px){.top-in{gap:8px}.logo{width:34px;height:34px}.brand{gap:8px;font-size:.98rem}.brand small{font-size:.72rem}.top-tem{padding:5px 9px;font-size:.86rem}.nav-btn{width:38px}}
+@media (max-width:340px){.top .wrap{padding:0 12px}.brand{font-size:.92rem}}
 
 /* botones */
 .btn{display:inline-block;background:var(--coral);color:#fff;font-weight:700;text-decoration:none;padding:14px 24px;border-radius:12px;box-shadow:0 3px 0 #c9513a;transition:transform .1s}
@@ -329,3 +330,9 @@ details p{margin-top:0}
 .free-banner p{margin:0}
 .dl-card .btn{padding:12px 14px;white-space:nowrap}
 @media (max-width:860px){.dl-card{grid-template-columns:96px 1fr}}
+
+.nw{white-space:nowrap}
+.br-m{display:none}
+@media (max-width:820px){.br-m{display:inline}}
+.foot a,.mail-plain a{overflow-wrap:anywhere}
+.foot-in>*{min-width:0}
