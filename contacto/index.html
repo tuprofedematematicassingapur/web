@@ -44,12 +44,29 @@
 </section>
 <section class="sec form-sec">
   <div class="wrap narrow">
+    <p class="form-sel" id="form-sel" hidden></p>
     <div class="form-frame">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSerT-zTXYYEcDYw8DaTIJvhbhqG5hJDqFtGo3jlW9hnTnRwfA/viewform?embedded=true" title="Formulario de contacto y reservas" loading="lazy">Cargando…</iframe>
+      <iframe id="form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSerT-zTXYYEcDYw8DaTIJvhbhqG5hJDqFtGo3jlW9hnTnRwfA/viewform?embedded=true" title="Formulario de contacto y reservas" loading="lazy">Cargando…</iframe>
     </div>
-    <p class="form-alt">¿No ves el formulario? <a href="https://docs.google.com/forms/d/e/1FAIpQLSerT-zTXYYEcDYw8DaTIJvhbhqG5hJDqFtGo3jlW9hnTnRwfA/viewform" target="_blank" rel="noopener">Ábrelo en una pestaña nueva</a> o escríbeme a <a href="mailto:info@tuprofedematematicassingapur.com?subject=Informaci%C3%B3n%20seminarios%20M%C3%A9todo%20Singapur&body=Hola%20Jos%C3%A9%3A%0A%0AMi%20hijo/a%20est%C3%A1%20en%20__%20de%20ESO%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20las%20clases.%0A%0A-%20%C2%BFSu%20colegio%20usa%20el%20M%C3%A9todo%20Singapur%3F%20S%C3%AD%20/%20No%20/%20No%20lo%20s%C3%A9%0A-%20Qu%C3%A9%20le%20est%C3%A1%20costando%3A%20__%0A%0AGracias.">info@tuprofedematematicassingapur.com</a>.</p>
+    <p class="form-alt">¿No ves el formulario? <a id="form-alt" href="https://docs.google.com/forms/d/e/1FAIpQLSerT-zTXYYEcDYw8DaTIJvhbhqG5hJDqFtGo3jlW9hnTnRwfA/viewform" target="_blank" rel="noopener">Ábrelo en una pestaña nueva</a> o escríbeme a <a href="mailto:info@tuprofedematematicassingapur.com?subject=Informaci%C3%B3n%20seminarios%20M%C3%A9todo%20Singapur&body=Hola%20Jos%C3%A9%3A%0A%0AMi%20hijo/a%20est%C3%A1%20en%20__%20de%20ESO%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20las%20clases.%0A%0A-%20%C2%BFSu%20colegio%20usa%20el%20M%C3%A9todo%20Singapur%3F%20S%C3%AD%20/%20No%20/%20No%20lo%20s%C3%A9%0A-%20Qu%C3%A9%20le%20est%C3%A1%20costando%3A%20__%0A%0AGracias.">info@tuprofedematematicassingapur.com</a>.</p>
   </div>
 </section>
+<script>
+(function(){
+  var p = new URLSearchParams(location.search);
+  var curso = p.get("curso"), tema = p.get("tema");
+  if (!curso && !tema) return;
+  var q = "usp=pp_url&entry.629888150=" + encodeURIComponent("Reservar un seminario");
+  if (curso) q += "&entry.685545521=" + encodeURIComponent(curso);
+  if (tema) q += "&entry.1091493800=" + encodeURIComponent(tema + " · Fecha aprox. del examen: ");
+  var base = "https://docs.google.com/forms/d/e/1FAIpQLSerT-zTXYYEcDYw8DaTIJvhbhqG5hJDqFtGo3jlW9hnTnRwfA/viewform";
+  document.getElementById("form-iframe").src = base + "?embedded=true&" + q;
+  document.getElementById("form-alt").href = base + "?" + q;
+  var sel = document.getElementById("form-sel");
+  sel.textContent = "Reserva: " + [curso, tema].filter(Boolean).join(" · ") + ". Ya está rellenado en el formulario; solo completa tus datos.";
+  sel.hidden = false;
+})();
+</script>
 </main>
 <footer class="foot">
   <div class="wrap foot-in">
