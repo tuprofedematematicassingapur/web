@@ -58,16 +58,20 @@
 <script>
 (function(){
   var p = new URLSearchParams(location.search);
-  var curso = p.get("curso"), tema = p.get("tema");
-  if (!curso && !tema) return;
-  var q = "usp=pp_url&entry.629888150=" + encodeURIComponent("Reservar un seminario");
+  var curso = p.get("curso"), tema = p.get("tema"), pedido = p.get("pedido");
+  if (!curso && !tema && !pedido) return;
+  var q = "usp=pp_url";
+  if (!pedido) q += "&entry.629888150=" + encodeURIComponent("Reservar un seminario");
   if (curso) q += "&entry.685545521=" + encodeURIComponent(curso);
-  if (tema) q += "&entry.1091493800=" + encodeURIComponent(tema + " · Fecha aprox. del examen: ");
+  if (pedido) q += "&entry.1091493800=" + encodeURIComponent("PEDIDO de exámenes con solucionario (10 €) · " + pedido);
+  else if (tema) q += "&entry.1091493800=" + encodeURIComponent(tema + " · Fecha aprox. del examen: ");
   var base = "https://docs.google.com/forms/d/e/1FAIpQLSerT-zTXYYEcDYw8DaTIJvhbhqG5hJDqFtGo3jlW9hnTnRwfA/viewform";
   document.getElementById("form-iframe").src = base + "?embedded=true&" + q;
   document.getElementById("form-alt").href = base + "?" + q;
   var sel = document.getElementById("form-sel");
-  sel.textContent = "Reserva: " + [curso, tema].filter(Boolean).join(" · ") + ". Ya está rellenado en el formulario; solo completa tus datos.";
+  sel.textContent = pedido
+    ? "Pedido de exámenes con solucionario: " + [curso, pedido].filter(Boolean).join(" · ") + " · 10 €. Ya está escrito en el formulario; completa tus datos y te respondo por email con las instrucciones de pago."
+    : "Reserva: " + [curso, tema].filter(Boolean).join(" · ") + ". Ya está rellenado en el formulario; solo completa tus datos.";
   sel.hidden = false;
 })();
 </script>
@@ -87,6 +91,7 @@
       <p class="foot-h">Para padres</p>
       <p><a href="/temarios/">Temarios por curso</a></p>
       <p><a href="/material-gratis/">Material gratis · Tema 1 de ESO y Bachillerato</a></p>
+      <p><a href="/examenes/">Exámenes con solucionario · para padres y profesores</a></p>
     </div>
   </div>
   <p class="wrap legal">© 2026 Tu profe de Matemáticas Singapur</p>

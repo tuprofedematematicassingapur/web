@@ -342,3 +342,7 @@ details p{margin-top:0}
 @media (max-width:820px){.br-m{display:inline}}
 .foot a,.mail-plain a{overflow-wrap:anywhere}
 .foot-in>*{min-width:0}
+
+/* Página /examenes/ */
+.h-center ~ .trust{justify-content:center;margin-top:18px}
+.ex-note{margin:6px 0 14px}
