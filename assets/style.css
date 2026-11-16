@@ -346,3 +346,23 @@ details p{margin-top:0}
 /* Página /examenes/ */
 .h-center ~ .trust{justify-content:center;margin-top:18px}
 .ex-note{margin:6px 0 14px}
+
+/* Portada: dos opciones (seminarios / material) */
+.doors-sec{padding-top:44px}
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:28px}
+@media (max-width:820px){.doors{grid-template-columns:1fr}}
+.door{display:flex;flex-direction:column;background:#fff;border:2px solid var(--teal);border-radius:var(--r);padding:26px;box-shadow:6px 6px 0 var(--hl)}
+.door-b{border-color:var(--coral)}
+.door-tag{margin:0 0 6px;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-2)}
+.door-b .door-tag{color:var(--coral)}
+.door h3{margin:0 0 8px;font-size:1.5rem}
+.door p{margin:0 0 12px}
+.door .ticks{margin:0 0 14px}
+.door-price{margin-top:auto !important;font-size:1.05rem}
+.door-price strong{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:1.6rem}
+.btn-ghost{background:#fff;color:var(--teal);border:2px solid var(--teal);box-shadow:none}
+.btn-free{background:var(--teal);color:#fff}
+.actions-center + .trust,.trust + .actions-center{margin-top:20px}
+span.tema-free{color:var(--muted);font-weight:400}
+.door .ticks li::before{color:var(--teal-2)}
+.door-b .ticks li::before{color:var(--coral)}
