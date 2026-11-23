@@ -32,7 +32,7 @@
   <div class="wrap narrow">
     <p class="kicker"><a href="/material/">Material</a> · Pedido</p>
     <h1 id="ped-h">Pedir un Pack de material</h1>
-    <p class="lead" id="ped-lead">Envíame el pedido y te respondo por email con el importe y las instrucciones de pago. Tras el pago te mando el PDF.</p>
+    <p class="lead" id="ped-lead">Rellena el formulario y te respondo por email con el importe y las instrucciones de pago. Tras el pago te mando el PDF.</p>
     <p class="form-sel" id="ped-sel" hidden></p>
   </div>
 </section>
@@ -42,6 +42,7 @@
          y los códigos entry.XXXX de los campos Curso, Tema y Soy (salen en el "enlace prellenado"). Mientras FORM_URL
          esté vacío, la página usa el envío por email de abajo. -->
     <div class="form-frame" id="ped-frame" hidden><iframe id="ped-iframe" title="Formulario de pedido de material" loading="lazy">Cargando…</iframe></div>
+    <p class="form-alt" id="ped-alt" hidden>¿No ves el formulario? <a id="ped-alt-a" href="#" target="_blank" rel="noopener">Ábrelo en una pestaña nueva</a> o escríbeme a <a href="mailto:info@tuprofedematematicassingapur.com">info@tuprofedematematicassingapur.com</a>.</p>
     <form class="ped-mail" id="ped-mail" onsubmit="return false">
       <label for="ped-soy">Soy</label>
       <select id="ped-soy"><option>Familia</option><option>Profesor particular</option><option>Academia o colegio</option></select>
@@ -55,8 +56,8 @@
 </section>
 <script>
 (function(){
-  var FORM_URL = "";            // p. ej. "https://docs.google.com/forms/d/e/XXXX/viewform"
-  var E_CURSO = "", E_TEMA = "", E_SOY = "";   // p. ej. "entry.123456789"
+  var FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe6HfEPz3_6MaRvE7c3v3pGHn92eehH10K-mr_QvqSiv032vA/viewform";
+  var E_CURSO = "entry.771984046", E_TEMA = "entry.873054789", E_SOY = "entry.1772751376";
   var p = new URLSearchParams(location.search);
   var curso = p.get("curso") || "", tema = p.get("tema") || "", centro = p.get("tipo") === "centro";
   var sel = document.getElementById("ped-sel");
@@ -75,6 +76,8 @@
     if (E_SOY && centro) q += "&" + E_SOY + "=" + encodeURIComponent("Academia o colegio");
     document.getElementById("ped-iframe").src = FORM_URL + "?embedded=true&" + q;
     document.getElementById("ped-frame").hidden = false;
+    document.getElementById("ped-alt-a").href = FORM_URL + "?" + q;
+    document.getElementById("ped-alt").hidden = false;
     document.getElementById("ped-mail").hidden = true;
     return;
   }
