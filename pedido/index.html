@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pedir material · Tu profe de Matemáticas Singapur</title>
+<meta name="description" content="Pide un Pack de material por tema de matemáticas (Método Singapur, ESO y Bachillerato). Te respondo por email con el pago y te envío el PDF.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://tuprofedematematicassingapur.com/pedido/">
+<meta name="theme-color" content="#0e4b4f">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="/"><svg class="logo" viewBox="0 0 44 44" aria-hidden="true"><rect x="4" y="10" width="11" height="10" rx="2" fill="var(--teal)"/><rect x="16" y="10" width="11" height="10" rx="2" fill="var(--teal)"/><rect x="28" y="10" width="11" height="10" rx="2" fill="var(--hl)"/><rect x="4" y="24" width="23" height="10" rx="2" fill="var(--coral)"/></svg><span><small>Tu profe de</small>Matemáticas Singapur</span></a>
+    <a class="top-tem" href="/temarios/">Temarios</a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">
+    <label for="nav-toggle" class="nav-btn" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="nav" aria-label="Principal"><a href="/#metodo">Método</a><a href="/#seminario">Seminarios</a><a href="/material/">Material</a><a href="/temarios/">Temarios</a><a href="/#sobre-mi">Sobre mí</a><a href="/#dudas">Dudas</a><a class="nav-res" href="/contacto/">Reservar seminario</a></nav>
+    <a class="btn btn-sm top-cta" href="/contacto/">Reservar seminario</a>
+  </div>
+</header>
+<main id="contenido">
+
+<section class="sec sec-paper contact-head">
+  <div class="wrap narrow">
+    <p class="kicker"><a href="/material/">Material</a> · Pedido</p>
+    <h1 id="ped-h">Pedir un Pack de material</h1>
+    <p class="lead" id="ped-lead">Envíame el pedido y te respondo por email con el importe y las instrucciones de pago. Tras el pago te mando el PDF.</p>
+    <p class="form-sel" id="ped-sel" hidden></p>
+  </div>
+</section>
+<section class="sec form-sec">
+  <div class="wrap narrow">
+    <!-- Formulario de Google para pedidos. Cuando exista, rellena FORM_URL (enlace del formulario, terminado en /viewform)
+         y los códigos entry.XXXX de los campos Curso, Tema y Soy (salen en el "enlace prellenado"). Mientras FORM_URL
+         esté vacío, la página usa el envío por email de abajo. -->
+    <div class="form-frame" id="ped-frame" hidden><iframe id="ped-iframe" title="Formulario de pedido de material" loading="lazy">Cargando…</iframe></div>
+    <form class="ped-mail" id="ped-mail" onsubmit="return false">
+      <label for="ped-soy">Soy</label>
+      <select id="ped-soy"><option>Familia</option><option>Profesor particular</option><option>Academia o colegio</option></select>
+      <label for="ped-com">Comentario (opcional)</label>
+      <textarea id="ped-com" rows="4" placeholder="Por ejemplo, si quieres varios temas"></textarea>
+      <a class="btn btn-block" id="ped-btn" href="#">Enviar pedido por email</a>
+      <p class="form-alt">Se abrirá tu programa de correo con el pedido ya escrito. Si no se abre, escríbeme a <a href="mailto:info@tuprofedematematicassingapur.com">info@tuprofedematematicassingapur.com</a> indicando curso y tema.</p>
+    </form>
+    <p class="center small-note">¿Buscas un seminario? <a href="/contacto/">Reserva aquí</a>.</p>
+  </div>
+</section>
+<script>
+(function(){
+  var FORM_URL = "";            // p. ej. "https://docs.google.com/forms/d/e/XXXX/viewform"
+  var E_CURSO = "", E_TEMA = "", E_SOY = "";   // p. ej. "entry.123456789"
+  var p = new URLSearchParams(location.search);
+  var curso = p.get("curso") || "", tema = p.get("tema") || "", centro = p.get("tipo") === "centro";
+  var sel = document.getElementById("ped-sel");
+  if (centro) {
+    document.getElementById("ped-h").textContent = "Consulta de profesor o centro";
+    document.getElementById("ped-lead").textContent = "Cuéntame qué necesitas (cursos, temas, número de alumnos o grupos) y te respondo por email.";
+    document.getElementById("ped-soy").value = "Academia o colegio";
+  } else if (curso || tema) {
+    sel.textContent = "Pedido: Pack para familias · " + [curso, tema].filter(Boolean).join(" · ") + " · 15 €";
+    sel.hidden = false;
+  }
+  if (FORM_URL) {
+    var q = "usp=pp_url";
+    if (E_CURSO && curso) q += "&" + E_CURSO + "=" + encodeURIComponent(curso);
+    if (E_TEMA && (tema || centro)) q += "&" + E_TEMA + "=" + encodeURIComponent(centro ? "Consulta de profesor o centro" : tema);
+    if (E_SOY && centro) q += "&" + E_SOY + "=" + encodeURIComponent("Academia o colegio");
+    document.getElementById("ped-iframe").src = FORM_URL + "?embedded=true&" + q;
+    document.getElementById("ped-frame").hidden = false;
+    document.getElementById("ped-mail").hidden = true;
+    return;
+  }
+  document.getElementById("ped-btn").addEventListener("click", function(ev){
+    ev.preventDefault();
+    var soy = document.getElementById("ped-soy").value, com = document.getElementById("ped-com").value.trim();
+    var asunto = centro ? "Consulta de profesor o centro" : "Pedido Pack para familias · " + [curso, tema].filter(Boolean).join(" · ");
+    var cuerpo = "Hola José:\n\n" + (centro ? "Quiero información sobre el material para profesores o centros." : "Quiero comprar este Pack para familias (15 €):\n- Curso: " + (curso || "__") + "\n- Tema: " + (tema || "__")) +
+      "\n\nSoy: " + soy + (com ? "\n\nComentario: " + com : "") + "\n\nGracias.";
+    location.href = "mailto:info@tuprofedematematicassingapur.com?subject=" + encodeURIComponent(asunto) + "&body=" + encodeURIComponent(cuerpo);
+  });
+})();
+</script>
+</main>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <a class="brand brand-foot" href="/"><svg class="logo" viewBox="0 0 44 44" aria-hidden="true"><rect x="4" y="10" width="11" height="10" rx="2" fill="var(--teal)"/><rect x="16" y="10" width="11" height="10" rx="2" fill="var(--teal)"/><rect x="28" y="10" width="11" height="10" rx="2" fill="var(--hl)"/><rect x="4" y="24" width="23" height="10" rx="2" fill="var(--coral)"/></svg><span><small>Tu profe de</small>Matemáticas Singapur</span></a>
+      <p>Seminarios online y material por tema de matemáticas con el Método Singapur para alumnos de ESO. También Bachillerato. No doy clases de Primaria.</p>
+    </div>
+    <div>
+      <p class="foot-h">Contacto</p>
+      <p><a href="mailto:info@tuprofedematematicassingapur.com?subject=Informaci%C3%B3n%20seminarios%20M%C3%A9todo%20Singapur&body=Hola%20Jos%C3%A9%3A%0A%0AMi%20hijo/a%20est%C3%A1%20en%20__%20de%20ESO%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20las%20clases.%0A%0A-%20%C2%BFSu%20colegio%20usa%20el%20M%C3%A9todo%20Singapur%3F%20S%C3%AD%20/%20No%20/%20No%20lo%20s%C3%A9%0A-%20Qu%C3%A9%20le%20est%C3%A1%20costando%3A%20__%0A%0AGracias.">info@tuprofedematematicassingapur.com</a></p>
+      <p><a href="/contacto/">Formulario de contacto</a></p>
+    </div>
+    <div>
+      <p class="foot-h">Material y temarios</p>
+      <p><a href="/temarios/">Temarios por curso</a></p>
+            <p><a href="/material/">Material para casa · Packs por tema, 15 €</a></p>
+      <p><a href="/material/#cursos">Tema 1 de cada curso, gratis</a></p>
+      <p><a href="/material/#centros">Profesores y centros</a></p>
+    </div>
+  </div>
+  <p class="wrap legal">© 2026 Tu profe de Matemáticas Singapur</p>
+</footer>
+<script>document.querySelectorAll('.nav a').forEach(function(a){a.addEventListener('click',function(){var t=document.getElementById('nav-toggle');if(t)t.checked=false;});});</script>
+</body>
+</html>

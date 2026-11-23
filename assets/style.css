@@ -366,3 +366,10 @@ details p{margin-top:0}
 span.tema-free{color:var(--muted);font-weight:400}
 .door .ticks li::before{color:var(--teal-2)}
 .door-b .ticks li::before{color:var(--coral)}
+
+/* Página /pedido/ */
+.ped-mail{display:grid;gap:8px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.ped-mail label{font-weight:700;margin-top:6px}
+.ped-mail select,.ped-mail textarea{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.ped-mail .btn{margin-top:10px;text-align:center}
+#cursos.dl-jump{margin-bottom:26px}
